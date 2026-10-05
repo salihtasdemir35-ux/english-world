@@ -12,6 +12,20 @@ jobs:
       - name: Kodu al
         uses: actions/checkout@v4
 
+      - name: Web dosyasını hazırla
+        run: |
+          mkdir -p www
+          if [ ! -f www/index.html ]; then
+            SRC=$(find . -type f \( -iname "index.html" -o -iname "english-world.html" \) ! -path "./www/*" ! -path "./.git/*" | head -n 1)
+            if [ -z "$SRC" ]; then
+              echo "HATA: Uygulama dosyası bulunamadı. english-world.html dosyasını depoya yükleyin."
+              exit 1
+            fi
+            echo "Kullanılan dosya: $SRC"
+            cp "$SRC" www/index.html
+          fi
+          ls -la www
+
       - name: Node.js kur
         uses: actions/setup-node@v4
         with:
