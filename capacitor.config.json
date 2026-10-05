@@ -1,0 +1,9 @@
+{
+  "appId": "com.englishworld.kids",
+  "appName": "English World",
+  "webDir": "www",
+  "android": {
+    "backgroundColor": "#EAF4FF",
+    "allowMixedContent": false
+  }
+}
