@@ -26,6 +26,15 @@ jobs:
           fi
           ls -la www
 
+      - name: Simge dosyalarını hazırla
+        run: |
+          mkdir -p assets
+          for f in icon-only icon-foreground icon-background splash splash-dark; do
+            SRC=$(find . -type f -iname "$f.png" ! -path "./assets/*" ! -path "./.git/*" | head -n 1)
+            if [ -n "$SRC" ]; then echo "Simge: $SRC"; cp "$SRC" "assets/$f.png"; fi
+          done
+          ls -la assets
+
       - name: Node.js kur
         uses: actions/setup-node@v4
         with:
